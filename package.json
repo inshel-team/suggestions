@@ -1,0 +1,76 @@
+{
+  "name": "@inshel/suggestions",
+  "version": "0.1.0",
+  "description": "InShel suggestions client",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test",
+    "build": "rm -rf ./lib && babel ./src --out-dir ./lib",
+    "lint:fix": "npx standard --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-regenerator": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "ramda": "^0.26.1"
+  },
+  "peerDependencies": {
+    "@inshel/node": "^0.1.0"
+  },
+  "devDependencies": {
+    "@inshel/node": "^0.1.0",
+    "aes-js": "^3.1.2",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
+    "core-js": "^3.1.4",
+    "husky": "^3.0.2",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.2.1",
+    "node-jsencrypt": "^1.0.0",
+    "standard": "^13.1.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-regenerator"
+    ]
+  },
+  "jest": {
+    "bail": 1,
+    "maxConcurrency": 1,
+    "verbose": true,
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.test.js$",
+    "transform": {
+      "js": "babel-jest"
+    }
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "standard --fix",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "InShel",
+    "client",
+    "suggestions"
+  ],
+  "author": "Dmitry <db@inshel.com> Balakov",
+  "license": "ISC"
+}
